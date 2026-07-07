@@ -2,11 +2,13 @@
 
 :root {
   --background: #09090b;
-  --foreground: #e4e4e7;
+  --foreground: #f4f4f5;
   --muted: #a1a1aa;
   --card: #111113;
-  --border: #27272a;
+  --card-elevated: #17171c;
+  --border: rgba(255, 255, 255, 0.08);
   --accent: #8b5cf6;
+  --font-heading: var(--font-geist-sans);
 }
 
 @theme inline {
@@ -16,17 +18,42 @@
   --color-card: var(--card);
   --color-border: var(--border);
   --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background:
-    radial-gradient(circle at 10% 0%, rgba(139, 92, 246, 0.17), transparent 32%),
-    radial-gradient(circle at 90% 8%, rgba(139, 92, 246, 0.08), transparent 30%),
+    radial-gradient(circle at 8% 0%, rgba(139, 92, 246, 0.1), transparent 30%),
+    radial-gradient(circle at 92% 10%, rgba(139, 92, 246, 0.07), transparent 33%),
     var(--background);
   color: var(--foreground);
   text-rendering: optimizeLegibility;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+p {
+  max-width: 72ch;
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 ::selection {
@@ -37,4 +64,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  body {
+    line-height: 1.55;
+  }
 }

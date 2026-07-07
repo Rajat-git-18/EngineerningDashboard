@@ -5,12 +5,15 @@ import {
   BrainCircuit,
   Clock3,
   Mail,
+  PanelTop,
   Sparkles,
 } from "lucide-react";
 
 import { AIAssistantWidget } from "@/components/dashboard/ai-assistant-widget";
 import { ArchitecturePipeline } from "@/components/dashboard/architecture-pipeline";
 import { MotionItem, MotionList, Reveal } from "@/components/dashboard/motion-primitives";
+import { SiteHeader } from "@/components/dashboard/site-header";
+import { StatCard } from "@/components/dashboard/stat-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -26,17 +29,17 @@ import {
 } from "@/lib/dashboard-data";
 
 const navItems = [
-  "Systems",
-  "Timeline",
-  "Case Studies",
-  "Architecture",
-  "Stack",
-  "Learning",
-  "GitHub",
-  "LeetCode",
-  "Insights",
-  "Resume",
-  "Contact",
+  { id: "systems", label: "Systems" },
+  { id: "timeline", label: "Timeline" },
+  { id: "case-studies", label: "Case Studies" },
+  { id: "architecture", label: "Architecture" },
+  { id: "stack", label: "Stack" },
+  { id: "learning", label: "Learning" },
+  { id: "github", label: "GitHub" },
+  { id: "leetcode", label: "LeetCode" },
+  { id: "insights", label: "Insights" },
+  { id: "resume", label: "Resume" },
+  { id: "contact", label: "Contact" },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -51,103 +54,95 @@ export default function Home() {
   return (
     <main className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.2),transparent_45%)]" />
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-20 px-6 pb-28 pt-8 sm:px-8 md:pt-10">
-        <header className="sticky top-4 z-40 rounded-xl border border-white/10 bg-black/45 px-4 py-3 backdrop-blur-md supports-[backdrop-filter]:bg-black/25">
-          <nav aria-label="Primary navigation">
-            <ul className="flex flex-wrap items-center gap-4 text-xs text-zinc-300 sm:text-sm">
-              {navItems.map((item) => (
-                <li key={item}>
-                  <a
-                    href={`#${item.toLowerCase().replace(" ", "-")}`}
-                    className="transition hover:text-indigo-300 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300/70"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-14 px-4 pb-20 pt-4 sm:gap-18 sm:px-6 md:px-8 md:pt-6">
+        <SiteHeader items={navItems} resumeUrl={dashboardProfile.links.resume} />
 
-        <Reveal className="space-y-8" delay={0.04}>
-          <div className="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
-            <div className="space-y-6">
-              <p className="text-sm uppercase tracking-[0.2em] text-zinc-400">
-                {dashboardProfile.title}
-              </p>
-              <h1 className="text-balance text-4xl font-semibold leading-tight text-white sm:text-6xl">
+        <Reveal className="space-y-7" delay={0.02}>
+          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+            <div className="space-y-5">
+              <p className="text-xs uppercase tracking-[0.24em] text-zinc-400">{dashboardProfile.title}</p>
+              <h1 className="text-balance text-3xl font-semibold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
                 {dashboardProfile.headline}
               </h1>
-              <p className="max-w-2xl text-zinc-300">
-                Engineering dashboard designed to communicate production depth in mobile, backend,
-                architecture, and AI systems.
+              <p className="text-sm text-zinc-300 sm:text-base">
+                Engineering dashboard that reflects production depth in mobile delivery, scalable
+                backend systems, and architecture-first product thinking.
               </p>
-              <div className="flex flex-wrap gap-2 text-sm text-zinc-400">
+              <div className="flex flex-wrap gap-2 text-xs text-zinc-400 sm:text-sm">
                 {dashboardProfile.subtitle.map((item) => (
-                  <span key={item} className="rounded-full border border-white/10 px-3 py-1">
+                  <span key={item} className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">
                     {item}
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg">
-                  <Link href={dashboardProfile.links.resume}>
-                    Resume <ArrowUpRight className="ml-2 size-4" />
-                  </Link>
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+                <Button asChild size="lg" className="w-full sm:w-auto">
+                  <Link href={dashboardProfile.links.resume}>Resume</Link>
                 </Button>
-                <Button asChild variant="secondary" size="lg">
-                  <Link href={dashboardProfile.links.github}>
-                    GitHub <ArrowUpRight className="ml-2 size-4" />
-                  </Link>
+                <Button asChild variant="secondary" size="lg" className="w-full sm:w-auto">
+                  <Link href={dashboardProfile.links.github}>GitHub</Link>
                 </Button>
-                <Button asChild variant="secondary" size="lg">
-                  <Link href={dashboardProfile.links.linkedin}>
-                    LinkedIn <ArrowUpRight className="ml-2 size-4" />
-                  </Link>
+                <Button asChild variant="secondary" size="lg" className="w-full sm:w-auto">
+                  <Link href={dashboardProfile.links.linkedin}>LinkedIn</Link>
                 </Button>
-                <Button asChild variant="secondary" size="lg">
-                  <Link href={dashboardProfile.links.email}>
-                    Email <Mail className="ml-2 size-4" />
-                  </Link>
+                <Button asChild variant="secondary" size="lg" className="w-full sm:w-auto">
+                  <Link href={dashboardProfile.links.email}>Email</Link>
                 </Button>
               </div>
             </div>
             <ArchitecturePipeline />
           </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {dashboardProfile.highlights.map((highlight) => (
+              <Card key={highlight.label} className="bg-[var(--card-elevated)]">
+                <CardHeader className="p-4">
+                  <CardDescription className="text-xs uppercase tracking-wide text-zinc-500">
+                    {highlight.label}
+                  </CardDescription>
+                  <CardTitle className="text-base leading-snug text-zinc-100">{highlight.value}</CardTitle>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
         </Reveal>
 
-        <section id="systems" className="space-y-6">
+        <section id="systems" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">Live Engineering Stats</h2>
           </Reveal>
           <MotionList className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {engineeringStats.map((metric) => (
               <MotionItem key={metric.label}>
-                <Card className="transition hover:border-indigo-400/35 hover:bg-white/[0.05]">
-                  <CardHeader>
-                    <CardDescription>{metric.label}</CardDescription>
-                    <CardTitle className="text-2xl text-white">{metric.value}</CardTitle>
-                  </CardHeader>
-                </Card>
+                <StatCard label={metric.label} value={metric.value} />
               </MotionItem>
             ))}
           </MotionList>
         </section>
 
-        <section id="timeline" className="space-y-6">
+        <section id="timeline" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">Experience Timeline</h2>
           </Reveal>
-          <div className="space-y-4">
+          <div className="relative space-y-4 before:absolute before:bottom-0 before:left-4 before:top-0 before:w-px before:bg-white/10 sm:before:left-5">
             {timeline.map((entry) => (
-              <Card key={entry.company}>
+              <Card key={entry.company} className="relative ml-9 bg-[var(--card-elevated)] sm:ml-12">
+                <div className="absolute -left-9 top-6 flex size-8 items-center justify-center rounded-full border border-white/15 bg-[#17171c] text-[10px] font-semibold text-zinc-300 sm:-left-12 sm:size-10">
+                  {entry.company.slice(0, 2)}
+                </div>
                 <CardHeader>
                   <CardTitle>{entry.company}</CardTitle>
-                  <CardDescription>{entry.stream.join("  ->  ")}</CardDescription>
+                  <CardDescription className="flex flex-wrap gap-2">
+                    {entry.stream.map((tech) => (
+                      <span key={tech} className="rounded-full border border-white/10 px-2.5 py-1 text-xs">
+                        {tech}
+                      </span>
+                    ))}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <details className="group">
-                    <summary className="cursor-pointer list-none text-sm text-indigo-300 transition group-open:text-indigo-200">
+                    <summary className="cursor-pointer list-none text-sm text-indigo-300 transition group-open:text-indigo-200 focus-visible:outline-none">
                       View achievements
                     </summary>
                     <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-zinc-300">
@@ -162,7 +157,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="case-studies" className="space-y-6">
+        <section id="case-studies" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">Featured Case Studies</h2>
           </Reveal>
@@ -180,7 +175,14 @@ export default function Home() {
                     </summary>
                     <div className="mt-4 grid gap-3 text-sm text-zinc-300 md:grid-cols-2">
                       <p>
-                        <span className="text-white">Business Problem:</span> {study.businessProblem}
+                        <span className="text-white">Overview:</span> {study.overview}
+                      </p>
+                      <p>
+                        <span className="text-white">Problem:</span> {study.businessProblem}
+                      </p>
+                      <p>
+                        <span className="text-white">Responsibilities:</span>{" "}
+                        {study.responsibilities.join(", ")}
                       </p>
                       <p>
                         <span className="text-white">Architecture:</span> {study.architecture}
@@ -189,10 +191,16 @@ export default function Home() {
                         <span className="text-white">Challenges:</span> {study.challenges}
                       </p>
                       <p>
+                        <span className="text-white">Solutions:</span> {study.solutions}
+                      </p>
+                      <p>
+                        <span className="text-white">Tech Stack:</span> {study.techStack.join(", ")}
+                      </p>
+                      <p>
                         <span className="text-white">Engineering Decisions:</span> {study.decisions}
                       </p>
                       <p>
-                        <span className="text-white">Key Learnings:</span> {study.learnings}
+                        <span className="text-white">Lessons Learned:</span> {study.learnings}
                       </p>
                       <p>
                         <span className="text-white">Impact:</span> {study.impact}
@@ -204,6 +212,9 @@ export default function Home() {
                         <span className="text-white">Production Features:</span>{" "}
                         {study.productionFeatures.join(", ")}
                       </p>
+                      <div className="col-span-full rounded-xl border border-dashed border-white/15 bg-black/20 p-4 text-xs text-zinc-400">
+                        Screenshot placeholder (no confidential source code or sensitive internals).
+                      </div>
                     </div>
                   </details>
                 </CardContent>
@@ -212,7 +223,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="architecture" className="space-y-6">
+        <section id="architecture" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">Architecture Gallery</h2>
           </Reveal>
@@ -236,7 +247,7 @@ export default function Home() {
           </MotionList>
         </section>
 
-        <section id="stack" className="space-y-6">
+        <section id="stack" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">Technology Stack</h2>
           </Reveal>
@@ -259,7 +270,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="learning" className="space-y-6">
+        <section id="learning" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">Currently Learning</h2>
           </Reveal>
@@ -277,7 +288,7 @@ export default function Home() {
           </Card>
         </section>
 
-        <section id="github" className="space-y-6">
+        <section id="github" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">GitHub Dashboard</h2>
           </Reveal>
@@ -315,7 +326,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="leetcode" className="space-y-6">
+        <section id="leetcode" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">LeetCode Signal</h2>
           </Reveal>
@@ -341,7 +352,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="insights" className="space-y-6">
+        <section id="insights" className="space-y-5 scroll-mt-28">
           <Reveal>
             <h2 className="text-2xl font-semibold text-white sm:text-3xl">Engineering Philosophy</h2>
           </Reveal>
@@ -369,14 +380,14 @@ export default function Home() {
           </Card>
         </section>
 
-        <section id="resume" className="space-y-4">
+        <section id="resume" className="space-y-4 scroll-mt-28">
           <h2 className="text-2xl font-semibold text-white sm:text-3xl">Resume</h2>
           <Button asChild variant="secondary">
             <Link href={dashboardProfile.links.resume}>Open Resume</Link>
           </Button>
         </section>
 
-        <section id="contact" className="space-y-4">
+        <section id="contact" className="space-y-4 scroll-mt-28">
           <h2 className="text-2xl font-semibold text-white sm:text-3xl">Contact</h2>
           <Card>
             <CardContent className="flex flex-col gap-3 pt-6 text-zinc-300 sm:flex-row sm:items-center sm:justify-between">
@@ -402,6 +413,8 @@ export default function Home() {
             Product-grade craftsmanship
             <BrainCircuit className="ml-2 mr-1 inline size-3" />
             AI + Systems
+            <PanelTop className="ml-2 mr-1 inline size-3" />
+            Modern Frontend
           </p>
         </footer>
       </div>

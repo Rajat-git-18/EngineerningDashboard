@@ -9,6 +9,12 @@ export const dashboardProfile = {
     linkedin: "https://linkedin.com/in/rajat",
     email: "mailto:rajat@example.com",
   },
+  highlights: [
+    { label: "Currently Building", value: "ShopperIQ AI foundations" },
+    { label: "Open to Work", value: "Product-driven engineering teams" },
+    { label: "Current Company", value: "A3TechIdeas" },
+    { label: "Current Focus", value: "AI + scalable backend systems" },
+  ],
 };
 
 export const engineeringStats = [
@@ -74,6 +80,8 @@ export const caseStudies = [
     ],
     challenges:
       "Balancing low latency notifications, failure handling, and strict user trust in financial contexts.",
+    solutions:
+      "Used resilient service boundaries, queue-safe retries, and proactive observability to keep critical flows stable.",
     decisions:
       "Adopted idempotent handlers, retry-safe event workflows, and clear service boundaries to avoid cascading failures.",
     learnings:
@@ -99,6 +107,8 @@ export const caseStudies = [
     techStack: ["Next.js", "Node.js", "PostgreSQL", "Prisma", "RBAC", "REST APIs"],
     challenges:
       "Keeping query performance and authorization rules maintainable as organization complexity grew.",
+    solutions:
+      "Standardized access-control middleware and query patterns to reduce authorization regressions and improve maintainability.",
     decisions:
       "Centralized authorization checks, typed API contracts, and modular dashboard primitives.",
     learnings:
@@ -118,6 +128,8 @@ export const caseStudies = [
     architecture: "Planned: Next.js + Node orchestration with LLM pipelines and analytics data stores.",
     techStack: ["Next.js", "Node.js", "OpenAI", "PostgreSQL"],
     challenges: "Designing explainable AI outputs for operational teams.",
+    solutions:
+      "Planning retrieval-first and human-in-the-loop workflows to keep outputs grounded, reviewable, and production-safe.",
     decisions: "Prioritizing traceability, human review loops, and retrieval-first AI flows.",
     learnings: "AI features must be measurable, auditable, and tightly scoped.",
     impact: "In planning phase.",
