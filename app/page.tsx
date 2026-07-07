@@ -14,6 +14,7 @@ import { ArchitecturePipeline } from "@/components/dashboard/architecture-pipeli
 import { MotionItem, MotionList, Reveal } from "@/components/dashboard/motion-primitives";
 import { SiteHeader } from "@/components/dashboard/site-header";
 import { StatCard } from "@/components/dashboard/stat-card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -27,6 +28,7 @@ import {
   stackCards,
   timeline,
 } from "@/lib/dashboard-data";
+import { siteConfig } from "@/lib/site-config";
 
 const navItems = [
   { id: "systems", label: "Systems" },
@@ -45,8 +47,10 @@ const navItems = [
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Engineering Dashboard",
-    description:
-      "A premium engineering dashboard showcasing production systems, architecture thinking, AI focus, and software delivery impact.",
+    description: siteConfig.description,
+    alternates: {
+      canonical: siteConfig.url,
+    },
   };
 }
 
@@ -55,7 +59,11 @@ export default function Home() {
     <main className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.2),transparent_45%)]" />
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-14 px-4 pb-20 pt-4 sm:gap-18 sm:px-6 md:px-8 md:pt-6">
-        <SiteHeader items={navItems} resumeUrl={dashboardProfile.links.resume} />
+        <SiteHeader
+          items={navItems}
+          resumeUrl={dashboardProfile.links.resume}
+          githubUrl={dashboardProfile.links.github}
+        />
 
         <Reveal className="space-y-7" delay={0.02}>
           <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
@@ -131,7 +139,10 @@ export default function Home() {
                   {entry.company.slice(0, 2)}
                 </div>
                 <CardHeader>
-                  <CardTitle>{entry.company}</CardTitle>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <CardTitle>{entry.company}</CardTitle>
+                    <Badge variant="secondary">{entry.role}</Badge>
+                  </div>
                   <CardDescription className="flex flex-wrap gap-2">
                     {entry.stream.map((tech) => (
                       <span key={tech} className="rounded-full border border-white/10 px-2.5 py-1 text-xs">
@@ -165,7 +176,12 @@ export default function Home() {
             {caseStudies.map((study) => (
               <Card key={study.name}>
                 <CardHeader>
-                  <CardTitle>{study.name}</CardTitle>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <CardTitle>{study.name}</CardTitle>
+                    {"featured" in study && study.featured ? (
+                      <Badge>Major Project</Badge>
+                    ) : null}
+                  </div>
                   <CardDescription>{study.overview}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -328,9 +344,16 @@ export default function Home() {
 
         <section id="leetcode" className="space-y-5 scroll-mt-28">
           <Reveal>
-            <h2 className="text-2xl font-semibold text-white sm:text-3xl">LeetCode Signal</h2>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-2xl font-semibold text-white sm:text-3xl">LeetCode Signal</h2>
+              <Button asChild variant="secondary" size="sm">
+                <a href={leetcodeSnapshot.profileUrl} target="_blank" rel="noreferrer">
+                  View Profile <ArrowUpRight className="ml-1 size-4" />
+                </a>
+              </Button>
+            </div>
           </Reveal>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Card>
               <CardHeader>
                 <CardDescription>Problems Solved</CardDescription>
@@ -339,14 +362,22 @@ export default function Home() {
             </Card>
             <Card>
               <CardHeader>
-                <CardDescription>Contest Rating</CardDescription>
-                <CardTitle>{leetcodeSnapshot.rating}</CardTitle>
+                <CardDescription>Difficulty Split</CardDescription>
+                <CardTitle className="text-base">
+                  {leetcodeSnapshot.easy}E · {leetcodeSnapshot.medium}M · {leetcodeSnapshot.hard}H
+                </CardTitle>
               </CardHeader>
             </Card>
             <Card>
               <CardHeader>
-                <CardDescription>Badges</CardDescription>
-                <CardTitle className="text-base">{leetcodeSnapshot.badges.join(" · ")}</CardTitle>
+                <CardDescription>Global Ranking</CardDescription>
+                <CardTitle>{leetcodeSnapshot.ranking}</CardTitle>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardDescription>Profile</CardDescription>
+                <CardTitle className="text-base">rajatg461</CardTitle>
               </CardHeader>
             </Card>
           </div>
@@ -382,9 +413,17 @@ export default function Home() {
 
         <section id="resume" className="space-y-4 scroll-mt-28">
           <h2 className="text-2xl font-semibold text-white sm:text-3xl">Resume</h2>
-          <Button asChild variant="secondary">
-            <Link href={dashboardProfile.links.resume}>Open Resume</Link>
-          </Button>
+          <Card>
+            <CardContent className="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-zinc-300">
+                Download my resume for a detailed view of experience, production projects, and
+                technical skills.
+              </p>
+              <Button asChild variant="secondary">
+                <Link href={dashboardProfile.links.resume}>Open Resume</Link>
+              </Button>
+            </CardContent>
+          </Card>
         </section>
 
         <section id="contact" className="space-y-4 scroll-mt-28">
@@ -392,14 +431,18 @@ export default function Home() {
           <Card>
             <CardContent className="flex flex-col gap-3 pt-6 text-zinc-300 sm:flex-row sm:items-center sm:justify-between">
               <p>Open to software engineering opportunities with strong product and system depth.</p>
-              <div className="flex items-center gap-3 text-sm">
+              <div className="flex flex-wrap items-center gap-3 text-sm">
                 <a href={dashboardProfile.links.email} className="hover:text-white">
                   <Mail className="mr-1 inline size-4" />
-                  Email
+                  {siteConfig.links.email}
                 </a>
                 <a href={dashboardProfile.links.github} className="hover:text-white">
                   <ArrowUpRight className="mr-1 inline size-4" />
                   GitHub
+                </a>
+                <a href={dashboardProfile.links.linkedin} className="hover:text-white">
+                  <ArrowUpRight className="mr-1 inline size-4" />
+                  LinkedIn
                 </a>
               </div>
             </CardContent>

@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const url = "https://example.com";
+import { siteConfig } from "@/lib/site-config";
 
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url,
+      url: siteConfig.url,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,

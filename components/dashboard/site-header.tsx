@@ -16,7 +16,15 @@ function GitHubMark() {
   );
 }
 
-export function SiteHeader({ items, resumeUrl }: { items: Item[]; resumeUrl: string }) {
+export function SiteHeader({
+  items,
+  resumeUrl,
+  githubUrl,
+}: {
+  items: Item[];
+  resumeUrl: string;
+  githubUrl: string;
+}) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isShrunk, setIsShrunk] = useState(false);
   const [activeSection, setActiveSection] = useState(items[0]?.id ?? "");
@@ -88,9 +96,6 @@ export function SiteHeader({ items, resumeUrl }: { items: Item[]; resumeUrl: str
               RG
               <span className="absolute -right-0.5 -top-0.5 size-1.5 rounded-full bg-violet-300" />
             </span>
-            <span className="hidden text-xs font-medium tracking-wide text-zinc-300 sm:inline">
-              Engineering
-            </span>
           </span>
         </Link>
         <nav className="hidden flex-1 items-center gap-1 md:flex" aria-label="Primary navigation">
@@ -98,7 +103,7 @@ export function SiteHeader({ items, resumeUrl }: { items: Item[]; resumeUrl: str
         </nav>
         <div className="ml-auto flex items-center gap-2">
           <a
-            href="https://github.com/Rajat-git-18/EngineerningDashboard"
+            href={githubUrl}
             target="_blank"
             rel="noreferrer"
             className="rounded-md border border-white/10 p-2 text-zinc-300 transition hover:border-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"

@@ -1,26 +1,29 @@
+import { siteConfig } from "@/lib/site-config";
+
 export const dashboardProfile = {
-  name: "Rajat Gupta",
-  title: "Software Engineer",
+  name: siteConfig.name,
+  title: siteConfig.title,
   headline: "Building Production-grade Mobile, Backend & AI Applications.",
   subtitle: ["React Native", "Next.js", "Node.js", "PostgreSQL", "AWS", "OpenAI"],
   links: {
-    resume: "/resume.pdf",
-    github: "https://github.com/rajat",
-    linkedin: "https://linkedin.com/in/rajat",
-    email: "mailto:rajat@example.com",
+    resume: siteConfig.links.resume,
+    github: siteConfig.links.github,
+    linkedin: siteConfig.links.linkedin,
+    leetcode: siteConfig.links.leetcode,
+    email: `mailto:${siteConfig.links.email}`,
   },
   highlights: [
-    { label: "Currently Building", value: "ShopperIQ AI foundations" },
-    { label: "Open to Work", value: "Product-driven engineering teams" },
-    { label: "Current Company", value: "A3TechIdeas" },
-    { label: "Current Focus", value: "AI + scalable backend systems" },
+    { label: "Major Project", value: "Breakfree — production mobile platform" },
+    { label: "Open to Work", value: "Software engineering opportunities" },
+    { label: "Current Company", value: "A3 Ideanix Technology Private Limited" },
+    { label: "Current Focus", value: "React Native, AWS microservices & AI systems" },
   ],
 };
 
 export const engineeringStats = [
   { label: "Experience", value: "2+ Years" },
   { label: "Production Applications", value: "3" },
-  { label: "LeetCode", value: "500+" },
+  { label: "LeetCode", value: "395" },
   { label: "Current Focus", value: "AI Engineering" },
   { label: "Current Role", value: "Software Developer" },
   { label: "Technology Stack", value: "Frontend + Backend" },
@@ -29,16 +32,21 @@ export const engineeringStats = [
 export const timeline = [
   {
     company: "NBCC",
-    stream: ["ERP System", "Cross Platform Mobile App", "Production Features"],
+    role: "Software Developer",
+    stream: ["ERP System", "Cross Platform Mobile App", "Production Features", "React Native", "REST APIs"],
     achievements: [
-      "Shipped production modules for workforce and operations tracking.",
-      "Reduced release friction through reusable React Native components.",
-      "Collaborated on backend contracts for reliable mobile sync flows.",
+      "Contributed to ERP system modules used for operational and workforce management workflows.",
+      "Built and shipped cross-platform mobile app features with React Native for production users.",
+      "Implemented reusable UI components and state patterns to improve delivery speed across releases.",
+      "Collaborated with backend teams on API contracts, sync behavior, and production issue resolution.",
+      "Delivered production-ready features with focus on reliability, usability, and maintainability.",
     ],
   },
   {
-    company: "A3TechIdeas",
+    company: "A3 Ideanix Technology Private Limited",
+    role: "Software Developer",
     stream: [
+      "Breakfree",
       "HRMS Dashboard",
       "Next.js",
       "Node.js",
@@ -46,11 +54,16 @@ export const timeline = [
       "Prisma",
       "Authentication",
       "RBAC",
+      "AWS",
     ],
     achievements: [
-      "Built role-based HRMS dashboard with protected APIs and modular UI.",
-      "Owned full stack features from schema design to dashboard UX.",
-      "Implemented RBAC-aware API boundaries for organization-level access control.",
+      "Leading development on Breakfree, a production React Native application with AWS-backed services.",
+      "Designed and implemented microservice-oriented flows using Lambda, DynamoDB, SNS, and secure authentication.",
+      "Built notification and reliability-critical paths with emphasis on financial-grade user trust.",
+      "Developed HRMS dashboard with Next.js, Node.js, PostgreSQL, Prisma, and role-based access control.",
+      "Owned full-stack feature delivery from database schema and APIs to admin dashboard experiences.",
+      "Implemented RBAC-aware API boundaries, organization management, and employee lifecycle workflows.",
+      "Improved engineering quality through modular architecture, typed contracts, and production debugging practices.",
     ],
   },
 ];
@@ -58,17 +71,19 @@ export const timeline = [
 export const caseStudies = [
   {
     name: "Breakfree",
+    featured: true,
     overview:
-      "A financial reliability-first mobile product designed for high-trust user operations and event-driven notifications.",
+      "Major production mobile product focused on financial reliability, secure authentication, and event-driven notifications at scale.",
     businessProblem:
-      "Users needed a dependable mobile workflow where alerts, authentication, and transaction orchestration remained resilient at scale.",
+      "Users needed a dependable mobile workflow where alerts, authentication, and transaction orchestration remained resilient under real-world usage.",
     responsibilities: [
-      "React Native app architecture and feature delivery",
-      "Service integration design with API contracts",
-      "Reliability-focused rollout and operational monitoring",
+      "React Native app architecture and production feature delivery",
+      "AWS service integration (Lambda, DynamoDB, SNS) with REST API contracts",
+      "Authentication, push notification flows, and reliability-focused rollout",
+      "Microservice coordination and production issue triage",
     ],
     architecture:
-      "Mobile clients communicate with REST APIs backed by Node services, AWS Lambda workers, DynamoDB persistence, and SNS notification pipelines.",
+      "React Native clients connect to REST APIs backed by Node services, AWS Lambda workers, DynamoDB persistence, and SNS notification pipelines.",
     techStack: [
       "React Native",
       "AWS Lambda",
@@ -79,17 +94,22 @@ export const caseStudies = [
       "Microservices",
     ],
     challenges:
-      "Balancing low latency notifications, failure handling, and strict user trust in financial contexts.",
+      "Balancing low-latency notifications, failure handling, and strict user trust in financial contexts.",
     solutions:
-      "Used resilient service boundaries, queue-safe retries, and proactive observability to keep critical flows stable.",
+      "Used resilient service boundaries, idempotent handlers, retry-safe event workflows, and proactive observability.",
     decisions:
-      "Adopted idempotent handlers, retry-safe event workflows, and clear service boundaries to avoid cascading failures.",
+      "Adopted clear service boundaries and queue-safe processing to avoid cascading failures in critical user flows.",
     learnings:
-      "Reliability is a product feature. Architecture, observability, and UX copy must all align.",
+      "Reliability is a product feature. Architecture, observability, and UX must align for production-grade mobile systems.",
     impact:
-      "Production-ready architecture with improved delivery confidence and incident recovery speed.",
+      "Delivered production-ready mobile architecture with improved delivery confidence and incident recovery speed.",
     timeline: "6+ months",
-    productionFeatures: ["Secure auth flows", "Notification delivery tracing", "Resilient sync states"],
+    productionFeatures: [
+      "Secure authentication flows",
+      "Push notification delivery",
+      "Resilient sync states",
+      "AWS-backed microservice integrations",
+    ],
   },
   {
     name: "HRMS Dashboard",
@@ -116,7 +136,11 @@ export const caseStudies = [
     impact:
       "Faster admin workflows, cleaner org management flows, and production-ready RBAC enforcement.",
     timeline: "5 months",
-    productionFeatures: ["Organization management", "Employee lifecycle workflows", "Role-based permissions"],
+    productionFeatures: [
+      "Organization management",
+      "Employee lifecycle workflows",
+      "Role-based permissions",
+    ],
   },
   {
     name: "ShopperIQ AI",
@@ -124,8 +148,13 @@ export const caseStudies = [
       "Upcoming AI-first product focused on intelligent commerce insights and assistant-led operational decisions.",
     businessProblem:
       "Teams need practical AI tooling that improves decision speed without compromising data trust.",
-    responsibilities: ["Architecture planning", "Prompt workflow strategy", "AI + backend integration roadmap"],
-    architecture: "Planned: Next.js + Node orchestration with LLM pipelines and analytics data stores.",
+    responsibilities: [
+      "Architecture planning",
+      "Prompt workflow strategy",
+      "AI + backend integration roadmap",
+    ],
+    architecture:
+      "Planned: Next.js + Node orchestration with LLM pipelines and analytics data stores.",
     techStack: ["Next.js", "Node.js", "OpenAI", "PostgreSQL"],
     challenges: "Designing explainable AI outputs for operational teams.",
     solutions:
@@ -190,28 +219,32 @@ export const currentlyLearning = [
 ];
 
 export const githubSnapshot = {
-  pinned: ["breakfree-mobile", "hrms-platform", "system-design-notes"],
-  latestRepos: ["shopperiq-ai", "auth-service-template", "rbac-playground"],
+  pinned: ["EngineerningDashboard", "Connect-a-chatting-app", "Salary_Calculator"],
+  latestRepos: ["Portfolio", "Project_food", "JobHunt"],
   latestCommits: [
-    "refactor(auth): consolidate role guards",
-    "feat(api): add org scoped pagination",
-    "perf(mobile): optimize dashboard initial load",
+    "feat: refine engineering dashboard UX and mobile polish",
+    "build: premium engineering dashboard experience",
+    "chore: project structure and production setup",
   ],
 };
 
 export const leetcodeSnapshot = {
-  solved: "500+",
-  rating: "1850 (placeholder)",
-  badges: ["100 Days Badge", "SQL Badge", "Top Interview 150"],
+  profileUrl: siteConfig.links.leetcode,
+  solved: "395",
+  easy: "278",
+  medium: "111",
+  hard: "6",
+  ranking: "#307,758",
+  badges: ["278 Easy", "111 Medium", "6 Hard"],
 };
 
 export const aiAnswers: Record<string, string> = {
   breakfree:
-    "Breakfree highlights my production-grade React Native work with reliable backend integrations on AWS. I focused on resilient auth, notifications, and financial trust workflows.",
+    "Breakfree is my major production project at A3 Ideanix Technology Private Limited — React Native on the client with AWS Lambda, DynamoDB, SNS, authentication, and push notifications for reliable financial workflows.",
   backend:
-    "My backend work spans Node.js REST APIs, PostgreSQL schema design, Prisma modeling, and RBAC-aware service boundaries for production systems.",
+    "My backend work spans Node.js REST APIs, PostgreSQL schema design, Prisma modeling, RBAC-aware services, and AWS microservice integrations for production systems.",
   technologies:
-    "My strongest stack includes React Native, Next.js, Node.js, PostgreSQL, AWS, and OpenAI integrations with a focus on scalability.",
+    "My core stack includes React Native, Next.js, Node.js, PostgreSQL, AWS, and OpenAI integrations with a focus on scalable production delivery.",
   architecture:
-    "I prefer clean boundaries: client experience layer, typed API contracts, domain services, and observable infrastructure with rollback-friendly releases.",
+    "I design clean boundaries: mobile/web clients, typed API contracts, domain services, and observable cloud infrastructure with rollback-friendly releases.",
 };

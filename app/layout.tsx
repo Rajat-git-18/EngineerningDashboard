@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Inter, JetBrains_Mono } from "next/font/google";
+
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const geist = Geist({
@@ -18,29 +20,42 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Rajat Gupta | Senior Software Engineer",
-    template: "%s | Rajat Gupta",
+    default: `${siteConfig.name} | ${siteConfig.title}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Personal engineering portfolio focused on React Native, Next.js, Node.js, AI systems, and scalable backend architecture.",
+  description: siteConfig.description,
   keywords: [
     "Rajat Gupta",
     "Software Engineer",
     "React Native",
     "Next.js",
     "Node.js",
+    "Breakfree",
+    "A3 Ideanix Technology",
+    "AWS",
+    "PostgreSQL",
     "AI Engineering",
-    "Backend Architecture",
   ],
+  authors: [{ name: siteConfig.name, url: siteConfig.links.github }],
+  creator: siteConfig.name,
   openGraph: {
-    title: "Rajat Gupta | Senior Software Engineer",
-    description:
-      "Engineering portfolio focused on React Native, Next.js, Node.js, AI systems, and scalable backend architecture.",
-    url: "https://example.com",
-    siteName: "Rajat Gupta Portfolio",
+    title: `${siteConfig.name} | ${siteConfig.title}`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: `${siteConfig.name} — Engineering Dashboard`,
     type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} | ${siteConfig.title}`,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
