@@ -10,7 +10,6 @@ import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/", label: "Home" },
   { href: "/#work", label: "Work" },
   { href: "/#experience", label: "Experience" },
   { href: "/#about", label: "About" },
@@ -46,7 +45,7 @@ export function Navbar() {
           : "border-transparent bg-background/40 backdrop-blur-md"
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-4">
+      <Container className="flex h-14 items-center justify-between gap-4 sm:h-16">
         <Link href="/" className="flex items-center gap-3" aria-label="Rajat Gupta home">
           <span className="grid size-9 place-items-center rounded-xl border border-indigo-400/30 bg-accent-soft text-xs font-bold tracking-[0.14em] text-white">
             RG

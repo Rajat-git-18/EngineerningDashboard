@@ -24,7 +24,7 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} className={cn("scroll-mt-28 py-16 sm:py-20 lg:py-24", className)}>
+    <section id={id} className={cn("scroll-mt-24 py-14 sm:py-16 lg:py-20", className)}>
       {children}
     </section>
   );
@@ -40,14 +40,16 @@ export function SectionHeading({
   description?: string;
 }) {
   return (
-    <div className="mb-10 max-w-2xl space-y-3">
+    <div className="mb-8 max-w-2xl space-y-3 sm:mb-10">
       {eyebrow ? (
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-indigo-300/80">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">{title}</h2>
-      {description ? <p className="text-base text-zinc-400 sm:text-lg">{description}</p> : null}
+      <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl lg:text-4xl">
+        {title}
+      </h2>
+      {description ? <p className="text-base text-zinc-400">{description}</p> : null}
     </div>
   );
 }

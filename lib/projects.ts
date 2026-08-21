@@ -11,10 +11,13 @@ export type Project = {
   summary: string;
   description: string;
   technologies: string[];
+  techGroups?: { label: string; items: string[] }[];
   responsibilities: string[];
   features: string[];
   challenges: string[];
   architecture: string[];
+  implementation?: string[];
+  testing?: string[];
   outcome: string;
   featured?: boolean;
   href?: string;
@@ -33,7 +36,7 @@ export const projects: Project[] = [
     confidentiality:
       "Selected implementation details and screens are intentionally limited due to client confidentiality.",
     summary:
-      "Production fintech payments app with 10K+ active users. Mobile features in React Native with AWS serverless services for payments, messaging, and notifications.",
+      "Client fintech payments application with production mobile features in React Native and AWS serverless services for payments, messaging, and notifications.",
     description:
       "BreakFree is a client fintech payment application. I build and maintain core mobile features and contribute to the serverless AWS services that power payments, messaging, and notification workflows.",
     technologies: [
@@ -52,6 +55,31 @@ export const projects: Project[] = [
       "Plaid",
       "Jest",
       "Detox",
+    ],
+    techGroups: [
+      {
+        label: "Mobile",
+        items: [
+          "React Native",
+          "TypeScript",
+          "React Navigation",
+          "TanStack Query",
+          "Redux",
+          "Context API",
+        ],
+      },
+      {
+        label: "Backend / Cloud",
+        items: ["AWS Lambda", "API Gateway", "DynamoDB", "SQS", "CloudFront"],
+      },
+      {
+        label: "Integrations",
+        items: ["Stripe", "Plaid"],
+      },
+      {
+        label: "Testing",
+        items: ["Jest", "Detox"],
+      },
     ],
     responsibilities: [
       "Build and maintain core mobile features using React Native, TypeScript, and Redux/Context API.",
@@ -86,8 +114,20 @@ export const projects: Project[] = [
       "DynamoDB / SQS",
       "Stripe · Plaid · CloudFront",
     ],
+    implementation: [
+      "Mobile UI and navigation built with React Native, TypeScript, and React Navigation.",
+      "Server state managed with TanStack Query to reduce redundant network work.",
+      "Transaction-related flows designed with idempotency and rate limiting in mind.",
+      "Stripe and Plaid integrated for banking and payment processing paths.",
+      "AWS Lambda, API Gateway, DynamoDB, and SQS used for payments, messaging, and notifications.",
+    ],
+    testing: [
+      "Unit tests with Jest for critical mobile and service logic.",
+      "End-to-end coverage with Detox for key user flows.",
+      "CI/CD pipelines to automate testing and shorten release turnaround.",
+    ],
     outcome:
-      "Production-oriented fintech application serving 10K+ active users, with serverless workflows handling 50K+ transactions/month. Currently in active development and private/client testing — not publicly available.",
+      "Production-oriented fintech application currently in active development and private/client testing — not publicly available. Resume notes include 10K+ active users and serverless workflows handling 50K+ transactions/month.",
     featured: true,
   },
   {

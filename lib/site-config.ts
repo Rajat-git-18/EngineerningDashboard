@@ -7,7 +7,7 @@ export const siteConfig = {
     "Rajat Gupta — React Native / Mobile Engineer with 2+ years shipping iOS & Android apps, including a production fintech payments application. Experienced in TypeScript, TanStack Query, AWS Lambda, DynamoDB, Stripe, and Plaid.",
   location: "Remote / Gurugram, India",
   phone: "+91-7015885212",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://rajat-dev.netlify.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://rajatguptadev.netlify.app",
   links: {
     email: "Rajatg461@gmail.com",
     mailto: "mailto:Rajatg461@gmail.com",
